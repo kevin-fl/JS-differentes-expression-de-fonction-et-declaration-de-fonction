@@ -35,13 +35,22 @@ function remontéee() {
 }
 */
 
-// NB : eval() a ne jamais utiliser , peut permettre le hack
+// NB hors contexte : eval() a ne jamais utiliser , peut permettre le hack
+
     function carré(nombre) {
     return nombre * nombre;
     
 }
-console.log(carré(2));
+console.log(carré(2)); // 4
 
+
+// on aurait pu l ecrire comme ceci aussi , expression de fonction 
+
+let carréé = function(nombre) {
+    return nombre * nombre
+};
+let xxx = carréé(4);
+console.log(xxx);
 
 // NB : infos sur les valeurs passées en fonction
 
@@ -74,3 +83,37 @@ xx = maVoiture.fabricant;   // x recoit la valeur "honda"
 
 maFonction(maVoiture);
 yy = maVoiture.fabricant; // y recoit la valeur "honda" egalement 
+
+
+
+// les expressions de fonction sont pratiques pour passer une fonction comme argument d une autre fonction . 
+//dans l ex qui suit , la fonction map est dfinie et appelée avec une fonction anonyme comme premier argument : 
+
+function map(f,a) {
+    let resultat = [];
+    for (let i =0 ; i != a.length ; i++ )
+    resultat[i]= f(a[i]);
+    return resultat;
+}
+
+
+// une expression de fonction
+
+let cube = function(x) {return x*x*x}; //-> une expression de fonction
+map(cube, [0,1,78,15,153]);
+console.log(map(cube,[0,1,78,15,153]));  // ->(5) [0, 1, 474552, 3375, 3581577]
+
+
+
+
+// en JS , une fonction peut etre definie selon une condition
+
+let maFFonction;
+if(num ===0){
+    maFFonction = function(monObjett) {
+        monObjett.fabricant = "toyota"
+    }
+   
+}
+//?????????? recheck 11:00 js 43
+
