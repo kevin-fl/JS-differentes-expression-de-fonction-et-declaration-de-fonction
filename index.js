@@ -107,13 +107,65 @@ console.log(map(cube,[0,1,78,15,153]));  // ->(5) [0, 1, 474552, 3375, 3581577]
 
 
 // en JS , une fonction peut etre definie selon une condition
-
+/*
 let maFFonction;
 if(num ===0){
     maFFonction = function(monObjett) {
         monObjett.fabricant = "toyota"
+        console.log(monObjett.fabricant = "toyota");
     }
-   
-}
+
+};
 //?????????? recheck 11:00 js 43
 
+*/
+//*NB:a savoir la def d une methode :  une methode est une fonction etant une propriete d un objet 
+
+carré(5);
+console.log(carré(5));
+
+
+
+                                                        // LA RECURSIVITE
+                                                       // https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Functions --> pour plus de comprehension
+
+// une fonction peut faire reference a elle meme et s appeler elle-meme.est semblable a une boucle. 3 moyens :
+/*
+1.le nom de la fonction
+2.arguments.callee
+3.une variable de la portée qui fait reference a la fonction
+
+
+exemple
+ let toto = function truc() {
+
+ };
+
+1. truc()
+2.arguments.callee()
+3.toto()
+
+
+exemple fonction recursive:
+*/
+function boucle(x) {
+    if (x >=10)  //-> x>=10 represente la condition d arret
+    return;
+    // faire qqch
+    boucle(x+1); // appel recursif
+}  
+boucle(0);
+
+ 
+//autre exemple récupérer l'ensemble des nœuds d'un arbre (le DOM par exemple) se fait plus simplement en utilisant la récursivité :
+
+function parcourirArbre(noeud) {
+    if (noeud === null)
+    return;
+
+    for (var i=0; i<noeud.childNodes.length; i++) {
+        parcourirArbre(noeud.childNodes[i]);
+    }
+}
+
+//Contrairement à l'exemple précédent avec la fonction boucle, ici, chaque appel récursif entraîne lui-même plusieurs appels (et non un seul).
